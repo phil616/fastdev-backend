@@ -1,0 +1,17 @@
+*.pyc
+**/venv/
+**/__pycache__/
+*.log
+**/.pytest_cache/
+**/__pycache__/
+**/.venv/
+**/.ruff_cache/
+**/.mypy_cache/
+**/logs/
+*.coverage
+
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+*.db
+*.env

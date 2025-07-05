@@ -1,0 +1,62 @@
+name: "Develop Issue"
+about: "提交开发者软件需求"
+title: "[TASK] "
+labels: ["开发任务"]
+assignees: ["phil616"]
+body:
+  - type: markdown
+    attributes:
+      value: "请输入开发人员的任务需求"
+  
+  - type: textarea
+    id: description
+    attributes:
+      label: "任务描述"
+      description: "描述任务需求和基本概述"
+      placeholder: "例如：要求功能点xxx实现xxx"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: "任务约束"
+      description: "说明任务的具体约束和指示范围"
+      placeholder: |
+        1. model参考
+        2. 任务参考
+        3. 功能参考
+    validations:
+      required: true
+
+  - type: textarea
+    id: depends
+    attributes:
+      label: "任务依赖"
+      description: "说明任务依赖那些文档"
+      placeholder: |
+        1. C0101Pxxx
+        ...
+    validations:
+      required: false
+
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: "优先级"
+      options:
+        - "Low(低优先级)"
+        - "High(高优先级)"
+        - "None(没有优先级-Pending任务)"
+    validations:
+      required: true
+
+  - type: input
+    id: publisher
+    attributes:
+      label: "发布人"
+      description: "任务发布来源"
+      placeholder: "例如：文档、Cerbot等"
+    validations:
+      required: true

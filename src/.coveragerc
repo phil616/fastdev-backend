@@ -1,0 +1,4 @@
+[run]
+omit =
+    tests/*
+    app/tortoise_config.py

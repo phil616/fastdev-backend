@@ -1,0 +1,20 @@
+{
+    "connections": {
+            "default": {
+                "engine": "tortoise.backends.mysql",
+                "credentials": {
+                    "host": "127.0.0.1",
+                    "port": 3306,
+                    "user": "root",
+                    "password": "123456",
+                    "database": "testdb"
+                }
+            }
+        },
+        "apps": {
+            "models": {
+                "models": ["app.models.user", "aerich.models", "app.models.workpiece"],
+                "default_connection": "default"
+            }
+    }
+}

@@ -1,0 +1,52 @@
+name: Test and Merge
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  run_tests:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'test'
+    runs-on: ubuntu-2204
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r ./backend/requirements.txt
+
+      - name: Run FastAPI tests
+        run: pytest ./backend/tests/ -v
+
+  merge_to_main:
+    needs: run_tests
+    runs-on: ubuntu-2204
+    if: needs.run_tests.result == 'success'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.AUTO_MERGE_TOKEN }}
+          fetch-depth: 0
+
+      - name: Merge test to main
+        run: |
+          git config --global user.name "Gitea Bot"
+          git config --global user.email "autobot@greenshadecapital.com"
+
+          git fetch origin main
+          git checkout main
+
+          # 拉取远程 test 分支为本地 test 分支
+          git fetch origin test:test
+
+          git merge --no-ff test -m "Auto-merge from test [ci skip]"
+          git push origin main

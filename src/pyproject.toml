@@ -1,0 +1,18 @@
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+lint.select = ["E", "F", "I", "N"]
+fix = true
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+disallow_untyped_decorators = false
+exclude = ["venv", ".venv", "alembic"]
+disable_error_code = ['misc', 'no-any-return']
+
+[tool.aerich]
+tortoise_orm = "app.tortoise_config.AERICH_CONFIG"
+location = "./migrations"
+src_folder = "./."

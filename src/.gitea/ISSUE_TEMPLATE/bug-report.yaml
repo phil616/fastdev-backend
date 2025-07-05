@@ -1,0 +1,58 @@
+name: "Bug Report"
+about: "提交软件缺陷或异常行为"
+title: "[BUG] "
+labels: ["代码bug", "阻塞等待"]
+assignees: ["phil616"]
+body:
+  - type: markdown
+    attributes:
+      value: "请详细描述问题，帮助我们快速复现和修复。"
+  
+  - type: textarea
+    id: description
+    attributes:
+      label: "问题描述"
+      description: "清晰说明 Bug 的现象和影响"
+      placeholder: "例如：点击保存按钮后数据丢失"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: "复现步骤"
+      description: "逐步说明如何触发该问题"
+      placeholder: |
+        1. 打开 XX 页面
+        2. 点击 XX 按钮
+        3. 观察错误现象
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: "严重程度"
+      options:
+        - "低（不影响使用）"
+        - "中（部分功能失效）"
+        - "高（系统崩溃/数据丢失）"
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: "环境信息"
+      description: "操作系统、浏览器、版本号等"
+      placeholder: "例如：Windows 11, Chrome 120.0"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: agreement
+    attributes:
+      label: "确认条款"
+      options:
+        - label: "我已确认该问题在最新版本中仍存在"
+          required: true

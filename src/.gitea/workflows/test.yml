@@ -1,0 +1,27 @@
+name: CI Test
+
+on:
+
+  pull_request:
+    branches: [test, main]
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-2204
+    steps:
+      - name: Checkout code
+        uses: https://git.greenshadecapital.site/actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: https://git.greenshadecapital.site/actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r ./requirements.txt
+
+      - name: Run FastAPI tests
+        run: pytest --cov=app/
